@@ -1,0 +1,13 @@
+# HEIC files should not be committed (they will be auto-converted)
+*.heic
+*.heif
+
+# Keep converted images
+!*.jpg
+!*.png
+!*.webp
+!*.svg
+!*.gif
+
+# Keep documentation
+!README-ASSETS.md

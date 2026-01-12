@@ -26,7 +26,17 @@ const WhyUs: React.FC = () => {
   ];
 
   return (
-    <section className='py-24 bg-zinc-50' id='about'>
+    <section
+      className='py-24 relative'
+      id='about'
+      style={{
+        backgroundImage: 'url(/assets/background-texture.png)',
+        backgroundAttachment: 'fixed',
+        backgroundPosition: 'center',
+        backgroundColor: 'rgba(255, 255, 255, 0.95)',
+        backgroundSize: 'cover',
+      }}
+    >
       <div className='max-w-7xl mx-auto px-4'>
         <div className='text-center mb-16'>
           <span

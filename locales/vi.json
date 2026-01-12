@@ -28,6 +28,94 @@
   "buttons": {
     "explore": "Khám phá",
     "learn_more": "Tìm hiểu thêm",
-    "contact_now": "Tư vấn ngay"
+    "contact_now": "Tư vấn ngay",
+    "pricing_detail": "NHẬN BÁO GIÁ CHI TIẾT",
+    "order_now": "ĐẶT HÀNG NGAY",
+    "consult_set": "TƯ VẤN SET CHƯNG"
+  },
+  "pricing": {
+    "title": "Bảng Giá Yến Sào Quế Anh",
+    "subtitle": "DANH MỤC SẢN PHẨM",
+    "description": "Mỗi người một nhu cầu - cứ nhắn Quế Anh tư vấn đúng loại phù hợp nhất cho bạn.",
+    "gifts": [
+      "Nhíp chuyên dụng",
+      "Táo đỏ thượng hạng",
+      "Đường phèn tinh khiết",
+      "Hạt chia Organic",
+      "Cẩm nang HDSD độc quyền"
+    ],
+    "cards": [
+      {
+        "id": 1,
+        "title": "YẾN THÔ",
+        "items": [
+          { "label": "Chân yến", "value": "50g / 100g" },
+          { "label": "Yến thô ít lông", "value": "50g / 100g" },
+          { "label": "Yến thô thường", "value": "50g / 100g" }
+        ],
+        "giftsLabel": "Quà tặng đi kèm:",
+        "button": "NHẬN BÁO GIÁ CHI TIẾT"
+      },
+      {
+        "id": 2,
+        "title": "YẾN LÀM SẠCH",
+        "badge": "Sản phẩm được tin dùng",
+        "refine": {
+          "title": "TINH CHẾ",
+          "items": [
+            { "label": "Tinh rút xương", "value": "Giá liên hệ" },
+            { "label": "Tinh sợi dài", "value": "Giá liên hệ" },
+            { "label": "Sơ mướp baby", "value": "Giá liên hệ" }
+          ]
+        },
+        "hairRemoval": {
+          "title": "RÚT LÔNG",
+          "items": [
+            { "label": "Rút lông A5", "value": "Giá liên hệ" },
+            { "label": "Rút lông khô", "value": "Giá liên hệ" }
+          ]
+        },
+        "giftsLabel": "Quà tặng đi kèm:",
+        "giftsDescription": "Trọn bộ phụ kiện chưng yến cao cấp tương tự Yến Thô (trừ nhíp nhặt lông).",
+        "button": "ĐẶT HÀNG NGAY"
+      },
+      {
+        "id": 3,
+        "title": "YẾN CHƯNG",
+        "priceLabel": "Giá bán lẻ 1 hũ",
+        "priceValue": "Liên hệ",
+        "sets": [
+          { "title": "SET 6 HŨ", "text": "Giá tốt" },
+          { "title": "SET 10 HŨ", "text": "Ưu đãi" }
+        ],
+        "description": "Chế biến sẵn, tiện lợi, giữ nguyên hàm lượng dinh dưỡng cho người bận rộn.",
+        "button": "TƯ VẤN SET CHƯNG"
+      }
+    ]
+  },
+  "whyUs": {
+    "title": "Tại Sao Chọn Chúng Tôi",
+    "reasons": [
+      {
+        "icon": "verified",
+        "title": "100% Nguyên Chất",
+        "desc": "Cam kết nguồn yến thật, không pha trộn, không chất bảo quản hay tẩy trắng."
+      },
+      {
+        "icon": "pan_tool",
+        "title": "Sơ Chế Thủ Công",
+        "desc": "Nhặt lông bằng tay tỉ mỉ bởi nghệ nhân, giữ trọn vẹn 18 loại acid amin quý giá."
+      },
+      {
+        "icon": "featured_seasonal_and_gifts",
+        "title": "Quà Tặng Tinh Tế",
+        "desc": "Hệ thống bao bì được thiết kế độc quyền, sang trọng, nâng tầm giá trị món quà."
+      },
+      {
+        "icon": "support_agent",
+        "title": "Tư Vấn Tận Tâm",
+        "desc": "Đội ngũ am hiểu sâu sắc, luôn sẵn sàng lắng nghe và thấu hiểu nhu cầu của bạn."
+      }
+    ]
   }
 }

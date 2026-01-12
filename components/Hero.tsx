@@ -24,7 +24,7 @@ const Hero: React.FC = () => {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 5000);
+    }, 8000);
     return () => clearInterval(timer);
   }, [slides.length]);
 
@@ -172,7 +172,10 @@ const Hero: React.FC = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1.5, delay: 0.8 }}
-                whileHover={{ y: -4, boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1)' }}
+                whileHover={{
+                  y: -4,
+                  boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1)',
+                }}
                 whileTap={{ y: -2 }}
               >
                 {slides[currentSlide].btnText}
@@ -204,7 +207,7 @@ const Hero: React.FC = () => {
         onClick={() =>
           setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length)
         }
-        className='absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20'
+        className='hidden md:block absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20'
         style={{ color: 'white', cursor: 'pointer', fontSize: '32px' }}
         onMouseEnter={(e) => (e.currentTarget.style.color = '#F5D78E')}
         onMouseLeave={(e) => (e.currentTarget.style.color = 'white')}
@@ -215,7 +218,7 @@ const Hero: React.FC = () => {
 
       <button
         onClick={() => setCurrentSlide((prev) => (prev + 1) % slides.length)}
-        className='absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20'
+        className='hidden md:block absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20'
         style={{ color: 'white', cursor: 'pointer', fontSize: '32px' }}
         onMouseEnter={(e) => (e.currentTarget.style.color = '#F5D78E')}
         onMouseLeave={(e) => (e.currentTarget.style.color = 'white')}
