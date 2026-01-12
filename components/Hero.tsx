@@ -1,45 +1,230 @@
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { colors, typography, spacing, gradients } from '../styles/theme';
+import { useLocales } from '../hooks/useLocales';
 
-import React from 'react';
+interface Slide {
+  image: string;
+  subtitle: string;
+  title: string;
+  description: string;
+  btnText: string;
+  btnLink: string;
+}
 
 const Hero: React.FC = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [startX, setStartX] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+  const locales = useLocales();
+
+  const slides: Slide[] = locales.hero.slides;
+
+  // Auto slide
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [slides.length]);
+
+  // Handle drag/swipe
+  const handleMouseDown = (e: React.MouseEvent) => {
+    setStartX(e.clientX);
+    setIsDragging(true);
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging) return;
+  };
+
+  const handleMouseUp = (e: React.MouseEvent) => {
+    if (!isDragging) return;
+    setIsDragging(false);
+    const diff = startX - e.clientX;
+    const threshold = 50;
+
+    if (diff > threshold) {
+      // Drag left - next slide
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    } else if (diff < -threshold) {
+      // Drag right - prev slide
+      setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+    }
+  };
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setStartX(e.touches[0].clientX);
+    setIsDragging(true);
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (!isDragging) return;
+    setIsDragging(false);
+    const diff = startX - e.changedTouches[0].clientX;
+    const threshold = 50;
+
+    if (diff > threshold) {
+      // Swipe left - next slide
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    } else if (diff < -threshold) {
+      // Swipe right - prev slide
+      setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+    }
+  };
+
   return (
-    <section className="relative h-[70vh] md:h-[85vh] overflow-hidden hero-clip bg-luxury">
-      {/* Hero Background Image */}
-      <img 
-        alt="Luxury Bird Nest Hero" 
-        className="absolute inset-0 w-full h-full object-cover opacity-60 scale-105" 
-        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPN5Q5rilIzPhwAK8rMSbhwZ9Dqc1beBxBOh2_vCY29OGi1sDB38c7Ukdm-vxTcavL6XyRZ-9JAHToSv7u8wXV2u8g7EhV7DqkeYwZtbEPqvbtDo74SzzTu4d3zYTG7pno5LyXKqYljPZ44vF80ScLkhhjERnI5GWBNPC0HvuDfkOHUMYRtpuj3ZN4Kbew3c6YXjpkSY3K9nIsNaoS34znarBBngQJK4ZZBMJpzdh30XipUCLuM-S7qjaF0jcYP4N6iASi82s8Bhkb" 
-      />
-      
+    <section
+      className='relative h-[70vh] md:h-[85vh] overflow-hidden bg-luxury cursor-grab active:cursor-grabbing'
+      style={{
+        backgroundImage: `url(${slides[currentSlide].image})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        transition:
+          'background-image 1200ms ease-in-out, opacity 1200ms ease-in-out',
+        opacity: 0.95,
+      }}
+      onMouseDown={handleMouseDown}
+      onMouseUp={handleMouseUp}
+      onMouseMove={handleMouseMove}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
       {/* Dark Overlay Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black via-black/40 to-transparent"></div>
-      
+      <div className='absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-transparent'></div>
+
       {/* Content Container */}
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col justify-center">
-        <div className="max-w-2xl border-l-[4px] md:border-l-[6px] border-primary pl-6 md:pl-10 py-4 md:py-6">
-          <span className="text-primary font-bold tracking-[0.3em] md:tracking-[0.4em] uppercase block mb-4 md:mb-6 text-xs md:text-sm">
-            Yến Sào Cao Cấp Quế Anh
-          </span>
-          
-          <h1 className="font-display text-5xl md:text-7xl lg:text-8xl text-white mb-6 md:mb-8 leading-[1.1]">
-            Tinh Túy <br/>
-            <span className="italic text-primary font-normal">Đất Trời</span>
-          </h1>
-          
-          <p className="text-gray-300 text-base md:text-lg mb-8 md:mb-12 max-w-lg leading-relaxed font-light">
-            Mang trọn vẹn giá trị dinh dưỡng từ thiên nhiên đến từng gia đình Việt qua bàn tay chăm chút tỉ mỉ của Quế Anh.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
-            <a href="#pricing" className="gold-gradient text-white px-8 md:px-10 py-4 md:py-5 font-bold text-[11px] md:text-xs tracking-[0.2em] hover:shadow-2xl transition-all transform hover:-translate-y-1 text-center">
-              KHÁM PHÁ SẢN PHẨM
-            </a>
-            <a href="#gifts" className="border border-white/40 text-white px-8 md:px-10 py-4 md:py-5 font-bold text-[11px] md:text-xs tracking-[0.2em] hover:bg-white/10 transition-all text-center">
-              HỘP QUÀ SANG TRỌNG
-            </a>
-          </div>
-        </div>
+      <div className='relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col justify-center'>
+        <AnimatePresence mode='wait'>
+          <motion.div
+            key={currentSlide}
+            className='max-w-2xl'
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <motion.span
+              style={{
+                fontSize: typography.fontSize.sm,
+                background: gradients.textGradients.champagneGold,
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+                display: 'block',
+              }}
+              className='font-bold tracking-[0.3em] md:tracking-[0.4em] uppercase block mb-4 md:mb-6'
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1.5, delay: 0.2 }}
+            >
+              {slides[currentSlide].subtitle}
+            </motion.span>
+
+            <motion.h1
+              style={{
+                fontFamily: typography.fontFamily.primary,
+                fontSize: 'clamp(1.5rem, 6vw, 5rem)',
+                background: gradients.textGradients.goldLuxury,
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+              }}
+              className='mb-6 md:mb-8 leading-[1.1]'
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1.5, delay: 0.4 }}
+            >
+              {slides[currentSlide].title} <br />
+              <span
+                style={{
+                  background: gradients.textGradients.champagneGold,
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                }}
+                className='italic font-normal text-4xl md:text-5xl'
+              ></span>
+            </motion.h1>
+
+            <motion.p
+              style={{
+                color: colors.textLight,
+                fontSize: typography.fontSize.base,
+              }}
+              className='mb-8 md:mb-12 max-w-lg leading-relaxed font-light'
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1.5, delay: 0.6 }}
+            >
+              {slides[currentSlide].description}
+            </motion.p>
+
+            <div className='flex flex-col gap-4 items-start'>
+              <motion.a
+                href={slides[currentSlide].btnLink}
+                style={{
+                  background: gradients.buttonGradients.champagneGoldLight,
+                  color: colors.primary,
+                  fontSize: typography.fontSize.xs,
+                }}
+                className='px-8 md:px-10 py-4 md:py-5 font-bold tracking-[0.2em] text-center'
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1.5, delay: 0.8 }}
+                whileHover={{ y: -4, boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1)' }}
+                whileTap={{ y: -2 }}
+              >
+                {slides[currentSlide].btnText}
+              </motion.a>
+            </div>
+          </motion.div>
+        </AnimatePresence>
       </div>
+
+      {/* Slide Indicators - Center Bottom */}
+      <div className='absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-3'>
+        {slides.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentSlide(index)}
+            className={`transition-all ${
+              index === currentSlide ? 'w-8' : 'w-2'
+            } h-2 rounded-full`}
+            style={{
+              backgroundColor: index === currentSlide ? '#F5D78E' : '#888888',
+            }}
+            aria-label={`Go to slide ${index + 1}`}
+          />
+        ))}
+      </div>
+
+      {/* Navigation Arrows */}
+      <button
+        onClick={() =>
+          setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length)
+        }
+        className='absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20'
+        style={{ color: 'white', cursor: 'pointer', fontSize: '32px' }}
+        onMouseEnter={(e) => (e.currentTarget.style.color = '#F5D78E')}
+        onMouseLeave={(e) => (e.currentTarget.style.color = 'white')}
+        aria-label='Previous slide'
+      >
+        <span className='material-symbols-outlined'>chevron_left</span>
+      </button>
+
+      <button
+        onClick={() => setCurrentSlide((prev) => (prev + 1) % slides.length)}
+        className='absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20'
+        style={{ color: 'white', cursor: 'pointer', fontSize: '32px' }}
+        onMouseEnter={(e) => (e.currentTarget.style.color = '#F5D78E')}
+        onMouseLeave={(e) => (e.currentTarget.style.color = 'white')}
+        aria-label='Next slide'
+      >
+        <span className='material-symbols-outlined text-4xl'>
+          chevron_right
+        </span>
+      </button>
     </section>
   );
 };

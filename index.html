@@ -1,24 +1,27 @@
-
 <!DOCTYPE html>
 <html lang="vi" class="scroll-smooth">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Yến Sào Quế Anh - Tinh Hoa Yến Sào Thượng Hạng</title>
+    <link rel="icon" type="image/jpeg" href="/assets/logo.png" />
     <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
     <script>
       tailwind.config = {
         theme: {
           extend: {
             colors: {
-              primary: "#B4975A", // Premium Gold
-              secondary: "#8C1A1A", // Elegant Red
-              luxury: "#0A0A0A", // Deep Black
+              primary: '#B4975A', // Premium Gold
+              secondary: '#8C1A1A', // Elegant Red
+              luxury: '#0A0A0A', // Deep Black
             },
             fontFamily: {
-              display: ["Playfair Display", "serif"],
-              sans: ["Montserrat", "sans-serif"],
+              display: ['Playfair Display', 'serif'],
+              sans: ['Montserrat', 'sans-serif'],
             },
           },
         },
@@ -31,25 +34,30 @@
           background-repeat: repeat;
         }
         .gold-gradient {
-          background: linear-gradient(135deg, #D4AF37 0%, #B4975A 50%, #8A6D3B 100%);
+          background: linear-gradient(
+            135deg,
+            #d4af37 0%,
+            #b4975a 50%,
+            #8a6d3b 100%
+          );
         }
         .hero-clip {
           clip-path: polygon(0 0, 100% 0, 100% 92%, 0% 100%);
         }
       }
     </style>
-  <script type="importmap">
-{
-  "imports": {
-    "react": "https://esm.sh/react@^19.2.3",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
-    "react/": "https://esm.sh/react@^19.2.3/",
-    "vite": "https://esm.sh/vite@^7.3.1",
-    "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.2"
-  }
-}
-</script>
-</head>
+    <script type="importmap">
+      {
+        "imports": {
+          "react": "https://esm.sh/react@^19.2.3",
+          "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+          "react/": "https://esm.sh/react@^19.2.3/",
+          "vite": "https://esm.sh/vite@^7.3.1",
+          "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.2"
+        }
+      }
+    </script>
+  </head>
   <body>
     <div id="root"></div>
     <!-- Standard Vite entry point -->

@@ -1,0 +1,33 @@
+{
+  "hero": {
+    "slides": [
+      {
+        "image": "/assets/silder-1.png",
+        "subtitle": "Yến Sào Quế Anh",
+        "title": "Tinh Túy Đất Trời",
+        "description": "Mang trọn vẹn giá trị dinh dưỡng từ thiên nhiên đến từng gia đình Việt qua bàn tay chăm chút tỉ mỉ của Quế Anh.",
+        "btnText": "KHÁM PHÁ SẢN PHẨM",
+        "btnLink": "#pricing"
+      },
+      {
+        "image": "/assets/silder-2.png",
+        "subtitle": "Yến Sào Quế Anh",
+        "title": "Phúc Lộc An Khang",
+        "description": "Lấy cảm hứng từ dưỡng sinh phương Đông, hộp quà yến sào Quế Anh hòa quyện giá trị dinh dưỡng quý hiếm và nét đẹp truyền thống. Từng tổ yến được chưng cất tỉ mỉ, mang đến năng lượng thuần khiết.",
+        "btnText": "KHÁM PHÁ HỘP QUÀ",
+        "btnLink": "#gifts"
+      }
+    ]
+  },
+  "navigation": {
+    "products": "Sản phẩm",
+    "gifts": "Hộp quà",
+    "about": "Về chúng tôi",
+    "contact": "Liên hệ"
+  },
+  "buttons": {
+    "explore": "Khám phá",
+    "learn_more": "Tìm hiểu thêm",
+    "contact_now": "Tư vấn ngay"
+  }
+}
